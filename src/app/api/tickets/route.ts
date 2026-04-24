@@ -1,7 +1,10 @@
 import { auth } from "@/auth";
 import { prisma } from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
-import { Prisma, Status, Priority } from "@prisma/client";
+
+
+type Status = "OPEN" | "IN_PROGRESS" | "CLOSED";
+type Priority = "LOW" | "MEDIUM" | "HIGH";
 
 const validStatuses: Status[] = ["OPEN", "IN_PROGRESS", "CLOSED"];
 const validPriorities: Priority[] = ["LOW", "MEDIUM", "HIGH"];
