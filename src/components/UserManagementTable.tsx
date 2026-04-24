@@ -182,7 +182,7 @@ const filteredUsers = users.filter((user) => {
             key={user.id}
             className="grid gap-4 rounded-2xl border border-border bg-background/70 p-4 shadow-sm md:grid-cols-[1.3fr_1.4fr_0.9fr_0.9fr_1.2fr_1fr] md:items-center"
           >
-            {/* USER INFO */}
+
             <div>
               <div className="flex items-center gap-2">
                 <p className="font-semibold text-foreground">{user.name}</p>
@@ -198,7 +198,7 @@ const filteredUsers = users.filter((user) => {
               </p>
             </div>
 
-            {/* CREATED */}
+
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <CalendarDays size={14} />
               <span>
@@ -206,7 +206,7 @@ const filteredUsers = users.filter((user) => {
               </span>
             </div>
 
-            {/* ROLE */}
+            
             <div>
               <span
                 className={`rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${roleBadge(
@@ -217,7 +217,7 @@ const filteredUsers = users.filter((user) => {
               </span>
             </div>
 
-            {/* STATUS */}
+            
             <div>
               <span
                 className={`rounded-full px-3 py-1 text-xs font-semibold ${
@@ -230,7 +230,7 @@ const filteredUsers = users.filter((user) => {
               </span>
             </div>
 
-            {/* ROLE SELECT */}
+            
             <div>
               <select
                 defaultValue={user.role}

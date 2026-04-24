@@ -1,7 +1,8 @@
 import { auth } from "@/auth";
 import { prisma } from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
-import { Role } from "@prisma/client";
+
+type Role = "ADMIN" | "MANAGER" | "USER";
 
 const validRoles: Role[] = ["ADMIN", "MANAGER", "USER"];
 

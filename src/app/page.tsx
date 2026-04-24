@@ -7,7 +7,6 @@ import MetricCard from "@/components/MetricCard";
 import DashboardCharts from "@/components/DashboardCharts";
 import TicketItem from "@/components/TicketItem";
 import Link from "next/link";
-import { Prisma } from "@prisma/client";
 import { ArrowRight, Tickets, ShieldCheck, TicketPlus } from "lucide-react";
 import EmptyState from "@/components/EmptyState";
 
@@ -21,7 +20,7 @@ export default async function Home() {
 
   const currentUserRole = session.user.role as "ADMIN" | "MANAGER" | "USER";
 
-  const where: Prisma.TicketWhereInput = {};
+  const where: any = {};
 
   if (session.user.role === "USER") {
     where.OR = [
