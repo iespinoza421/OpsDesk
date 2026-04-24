@@ -73,10 +73,19 @@ export default async function AdminUsersPage() {
 ) : (
   <UserManagementTable
     currentUserId={session.user.id}
-    users={users.map((user) => ({
-      ...user,
-      createdAt: user.createdAt.toISOString(),
-    }))}
+    users={users.map(
+  (user: {
+    id: string;
+    name: string;
+    email: string;
+    role: "ADMIN" | "MANAGER" | "USER";
+    isActive: boolean;
+    createdAt: Date;
+  }) => ({
+    ...user,
+    createdAt: user.createdAt.toISOString(),
+  })
+)}
   />
 )}
       </section>
