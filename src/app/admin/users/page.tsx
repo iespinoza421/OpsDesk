@@ -1,12 +1,12 @@
 import { auth } from "@/auth";
 import { prisma } from "@/app/lib/prisma";
-import { Prisma } from "@prisma/client";
+import * as PrismaTypes from "@prisma/client";
 import { redirect } from "next/navigation";
 import UserManagementTable from "../../../components/UserManagementTable";
 import AppShell from "@/components/AppShell";
 import EmptyState from "@/components/EmptyState";
 
-type UserRow = Prisma.UserGetPayload<{
+type UserRow = PrismaTypes.Prisma.UserGetPayload<{
   select: {
     id: true;
     name: true;
