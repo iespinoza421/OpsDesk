@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              String   @id @default(uuid())
+  name            String
+  email           String   @unique
+  password        String
+  role            Role     @default(USER)
+  createdAt       DateTime @default(now())
+  isActive Boolean @default(true)
+
+  createdTickets  Ticket[] @relation("CreatedTickets")
+  assignedTickets Ticket[] @relation("AssignedTickets")
+  comments Comment[]
+  activities TicketActivity[]
+  notifications Notification[]
+}
+
+model TicketActivity {
+  id          String   @id @default(uuid())
+  action      String
+  field       String?
+  oldValue    String?
+  newValue    String?
+  createdAt   DateTime @default(now())
+
+  ticketId    String
+  actorId     String
+
+  ticket      Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  actor       User     @relation(fields: [actorId], references: [id])
+
+  @@index([ticketId])
+  @@index([actorId])
+}
+
+model Ticket {
+  id           String   @id @default(uuid())
+  title        String
+  description  String
+  status       Status   @default(OPEN)
+  priority     Priority @default(MEDIUM)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+
+  createdById  String
+  assignedToId String?
+  comments Comment[]
+  activities TicketActivity[]
+  notifications Notification[]
+
+  createdBy    User     @relation("CreatedTickets", fields: [createdById], references: [id])
+  assignedTo   User?    @relation("AssignedTickets", fields: [assignedToId], references: [id])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  ticketId  String
+  authorId  String
+
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  author    User     @relation(fields: [authorId], references: [id])
+
+  @@index([ticketId])
+  @@index([authorId])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  userId    String
+  ticketId  String?
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ticket    Ticket?  @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([ticketId])
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  USER
+}
+
+enum Status {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
