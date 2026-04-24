@@ -1,21 +1,18 @@
 import { auth } from "@/auth";
 import { prisma } from "@/app/lib/prisma";
-import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 import UserManagementTable from "../../../components/UserManagementTable";
 import AppShell from "@/components/AppShell";
 import EmptyState from "@/components/EmptyState";
 
-type UserRow = Prisma.UserGetPayload<{
-  select: {
-    id: true;
-    name: true;
-    email: true;
-    role: true;
-    isActive: true;
-    createdAt: true;
-  };
-}>;
+type UserRow = {
+  id: string;
+  name: string;
+  email: string;
+  role: "ADMIN" | "MANAGER" | "USER";
+  isActive: boolean;
+  createdAt: Date;
+};
 
 export default async function AdminUsersPage() {
   const session = await auth();
