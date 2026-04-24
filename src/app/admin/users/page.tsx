@@ -1,12 +1,12 @@
 import { auth } from "@/auth";
 import { prisma } from "@/app/lib/prisma";
-import * as PrismaTypes from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { redirect } from "next/navigation";
 import UserManagementTable from "../../../components/UserManagementTable";
 import AppShell from "@/components/AppShell";
 import EmptyState from "@/components/EmptyState";
 
-type UserRow = PrismaTypes.Prisma.UserGetPayload<{
+type UserRow = Prisma.UserGetPayload<{
   select: {
     id: true;
     name: true;
@@ -41,6 +41,11 @@ export default async function AdminUsersPage() {
       createdAt: "desc",
     },
   });
+
+  const formattedUsers = users.map((user: UserRow) => ({
+  ...user,
+  createdAt: user.createdAt.toISOString(),
+}));
 
   return (
     <AppShell user={session.user}>
@@ -81,10 +86,7 @@ export default async function AdminUsersPage() {
           ) : (
             <UserManagementTable
               currentUserId={session.user.id}
-              users={users.map((user) => ({
-                ...user,
-                createdAt: user.createdAt.toISOString(),
-              }))}
+              users={formattedUsers}
             />
           )}
         </section>
