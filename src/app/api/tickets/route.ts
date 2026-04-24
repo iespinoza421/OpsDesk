@@ -20,7 +20,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const statusParam = searchParams.get("status");
 
-    const where: Prisma.TicketWhereInput = {};
+    const where: Record<string, unknown> = {};
 
     if (statusParam && statusParam !== "ALL") {
       if (!validStatuses.includes(statusParam as Status)) {
