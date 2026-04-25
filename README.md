@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpsDesk 🚀
 
-## Getting Started
+OpsDesk is a modern incident and task management platform built to simulate real-world operational workflows. It allows teams to create, assign, track, and resolve tickets efficiently with role-based access control and real-time updates.
 
-First, run the development server:
+🔗 Live Demo: https://ops-desk-inky.vercel.app
+
+---
+
+## ✨ Features
+
+- 🔐 Authentication with credentials
+- 👥 Role-based access control 
+- 🎫 Ticket management 
+- 💬 Comments and activity timeline per ticket
+- 🔔 Real-time notifications system
+- 🧑‍💼 Admin panel for user management
+- 🚫 Activate / deactivate users
+- 🔎 Search and filtering
+- 📊 Dashboard with metrics
+- 🌙 Dark / Light mode
+- 📱 Fully responsive UI
+- 🎨 Smooth animations
+
+---
+
+## 🧠 Tech Stack
+
+- **Frontend:** Next.js, React, TypeScript
+- **Backend:** Next.js API Routes
+- **Database:** PostgreSQL (Neon)
+- **ORM:** Prisma
+- **Auth:** NextAuth
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide
+
+---
+
+## 🔐 Security Features
+
+- Input validation with Zod
+- Rate limiting
+- Password hashing with bcrypt
+- Protected API routes
+- Prevention of user enumeration attacks
+
+---
+
+## 🏗️ Architecture
+
+- Full-stack app using Next.js App Router
+- Server Components for data fetching
+- Client Components for interactivity
+- Prisma ORM for database access
+- Modular component structure
+
+---
+
+🚀 Deployment
+
+Deployed on Vercel with:
+
+PostgreSQL via Neon
+Prisma ORM
+Environment variables configured in Vercel dashboard
+
+
+| Role    | Permissions                     |
+| ------- | ------------------------------- |
+| USER    | View & comment own tickets      |
+| MANAGER | Assign tickets, manage workflow |
+| ADMIN   | Full access, manage users       |
+
+📌 Future Improvements
+📎 File attachments
+📊 Advanced analytics
+🔔 Real-time WebSocket updates
+🔐 Two-factor authentication
+🧾 Audit logs
+
+## ⚙️ Getting Started
+
+### 1. Clone the repo
+
+### 2. Install dependencies
+
+### 3.Configure environment variables
+    DATABASE_URL=your_database_url
+    AUTH_SECRET=your_secret
+    NEXTAUTH_URL=http://localhost:3000
+    
+### 3.Configure environment variables
+
+### 4. Run migrations
+    npx prisma migrate deploy
+    
+### 5. Run the app
+    npm run dev
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+git clone https://github.com/iespinoza421/OpsDesk.git
+cd OpsDesk
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
