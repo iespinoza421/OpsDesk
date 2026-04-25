@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
     const limit = rateLimit({
       key: `register:${ip}`,
-      limit: 3,
+      limit: 10,
       windowMs: 60 * 60 * 1000,
     });
 
